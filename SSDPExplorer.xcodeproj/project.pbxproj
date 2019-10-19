@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,13 @@
 		995F9AFA235BBA3800F63BFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 995F9AF9235BBA3800F63BFD /* Assets.xcassets */; };
 		995F9AFD235BBA3800F63BFD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 995F9AFC235BBA3800F63BFD /* Preview Assets.xcassets */; };
 		995F9B00235BBA3800F63BFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 995F9AFE235BBA3800F63BFD /* Main.storyboard */; };
+		995F9B0A235BCFDD00F63BFD /* SSDPClient in Frameworks */ = {isa = PBXBuildFile; productRef = 995F9B09235BCFDD00F63BFD /* SSDPClient */; };
+		995F9B0D235BCFF600F63BFD /* XMLParsing in Frameworks */ = {isa = PBXBuildFile; productRef = 995F9B0C235BCFF600F63BFD /* XMLParsing */; };
+		995F9B17235BD0A100F63BFD /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995F9B12235BD0A100F63BFD /* Service.swift */; };
+		995F9B18235BD0A100F63BFD /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995F9B13235BD0A100F63BFD /* Device.swift */; };
+		995F9B19235BD0A100F63BFD /* LocationXMLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995F9B14235BD0A100F63BFD /* LocationXMLData.swift */; };
+		995F9B1A235BD0A100F63BFD /* SpecVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995F9B15235BD0A100F63BFD /* SpecVersion.swift */; };
+		995F9B1B235BD0A100F63BFD /* ServiceDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995F9B16235BD0A100F63BFD /* ServiceDiscovery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +30,11 @@
 		995F9AFF235BBA3800F63BFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		995F9B01235BBA3800F63BFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		995F9B02235BBA3800F63BFD /* SSDPExplorer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SSDPExplorer.entitlements; sourceTree = "<group>"; };
+		995F9B12235BD0A100F63BFD /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		995F9B13235BD0A100F63BFD /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		995F9B14235BD0A100F63BFD /* LocationXMLData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationXMLData.swift; sourceTree = "<group>"; };
+		995F9B15235BD0A100F63BFD /* SpecVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecVersion.swift; sourceTree = "<group>"; };
+		995F9B16235BD0A100F63BFD /* ServiceDiscovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscovery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +42,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				995F9B0A235BCFDD00F63BFD /* SSDPClient in Frameworks */,
+				995F9B0D235BCFF600F63BFD /* XMLParsing in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +71,7 @@
 			children = (
 				995F9AF5235BBA3500F63BFD /* AppDelegate.swift */,
 				995F9AF7235BBA3500F63BFD /* ContentView.swift */,
+				995F9B10235BD0A100F63BFD /* Service Discovery */,
 				995F9AF9235BBA3800F63BFD /* Assets.xcassets */,
 				995F9AFE235BBA3800F63BFD /* Main.storyboard */,
 				995F9B01235BBA3800F63BFD /* Info.plist */,
@@ -72,6 +87,26 @@
 				995F9AFC235BBA3800F63BFD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		995F9B10235BD0A100F63BFD /* Service Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				995F9B11235BD0A100F63BFD /* Location XML Data Structures */,
+				995F9B16235BD0A100F63BFD /* ServiceDiscovery.swift */,
+			);
+			path = "Service Discovery";
+			sourceTree = "<group>";
+		};
+		995F9B11235BD0A100F63BFD /* Location XML Data Structures */ = {
+			isa = PBXGroup;
+			children = (
+				995F9B12235BD0A100F63BFD /* Service.swift */,
+				995F9B13235BD0A100F63BFD /* Device.swift */,
+				995F9B14235BD0A100F63BFD /* LocationXMLData.swift */,
+				995F9B15235BD0A100F63BFD /* SpecVersion.swift */,
+			);
+			path = "Location XML Data Structures";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,6 +125,10 @@
 			dependencies = (
 			);
 			name = SSDPExplorer;
+			packageProductDependencies = (
+				995F9B09235BCFDD00F63BFD /* SSDPClient */,
+				995F9B0C235BCFF600F63BFD /* XMLParsing */,
+			);
 			productName = SSDPExplorer;
 			productReference = 995F9AF2235BBA3500F63BFD /* SSDPExplorer.app */;
 			productType = "com.apple.product-type.application";
@@ -118,6 +157,10 @@
 				Base,
 			);
 			mainGroup = 995F9AE9235BBA3500F63BFD;
+			packageReferences = (
+				995F9B08235BCFDD00F63BFD /* XCRemoteSwiftPackageReference "SSDPClient" */,
+				995F9B0B235BCFF500F63BFD /* XCRemoteSwiftPackageReference "XMLParsing" */,
+			);
 			productRefGroup = 995F9AF3235BBA3500F63BFD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -145,8 +188,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				995F9B19235BD0A100F63BFD /* LocationXMLData.swift in Sources */,
+				995F9B1A235BD0A100F63BFD /* SpecVersion.swift in Sources */,
 				995F9AF8235BBA3500F63BFD /* ContentView.swift in Sources */,
 				995F9AF6235BBA3500F63BFD /* AppDelegate.swift in Sources */,
+				995F9B17235BD0A100F63BFD /* Service.swift in Sources */,
+				995F9B18235BD0A100F63BFD /* Device.swift in Sources */,
+				995F9B1B235BD0A100F63BFD /* ServiceDiscovery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +393,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		995F9B08235BCFDD00F63BFD /* XCRemoteSwiftPackageReference "SSDPClient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pierrickrouxel/SSDPClient.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
+		995F9B0B235BCFF500F63BFD /* XCRemoteSwiftPackageReference "XMLParsing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ShawnMoore/XMLParsing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		995F9B09235BCFDD00F63BFD /* SSDPClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 995F9B08235BCFDD00F63BFD /* XCRemoteSwiftPackageReference "SSDPClient" */;
+			productName = SSDPClient;
+		};
+		995F9B0C235BCFF600F63BFD /* XMLParsing */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 995F9B0B235BCFF500F63BFD /* XCRemoteSwiftPackageReference "XMLParsing" */;
+			productName = XMLParsing;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 995F9AEA235BBA3500F63BFD /* Project object */;
 }
