@@ -8,7 +8,6 @@
 
 import SwiftUI
 import AppKit
-import SSDPClient
 
 struct ContentView: View {
         
@@ -23,14 +22,14 @@ struct ContentView: View {
             List((NSApplication.shared.delegate as! AppDelegate).serviceDiscovery.hosts, id: \.host) { host in
                 HostRow(host: host, focusedHostBinding: self.$focusedHost)
             }
-            
+
             Group {
                 // host detail v
                 if(( focusedHost ) != nil){
                     HostDetail(host: self.focusedHost!, focusedServiceGroupBinding: $focusedServiceGroup)
                 }
             }
-            
+
             Group {
                 // service group detail v
                 if(( focusedServiceGroup ) != nil){

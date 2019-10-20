@@ -13,12 +13,12 @@
 		995F9AFD235BBA3800F63BFD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 995F9AFC235BBA3800F63BFD /* Preview Assets.xcassets */; };
 		995F9B00235BBA3800F63BFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 995F9AFE235BBA3800F63BFD /* Main.storyboard */; };
 		995F9B0A235BCFDD00F63BFD /* SSDPClient in Frameworks */ = {isa = PBXBuildFile; productRef = 995F9B09235BCFDD00F63BFD /* SSDPClient */; };
-		995F9B0D235BCFF600F63BFD /* XMLParsing in Frameworks */ = {isa = PBXBuildFile; productRef = 995F9B0C235BCFF600F63BFD /* XMLParsing */; };
 		995F9B17235BD0A100F63BFD /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995F9B12235BD0A100F63BFD /* Service.swift */; };
 		995F9B18235BD0A100F63BFD /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995F9B13235BD0A100F63BFD /* Device.swift */; };
 		995F9B19235BD0A100F63BFD /* LocationXMLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995F9B14235BD0A100F63BFD /* LocationXMLData.swift */; };
 		995F9B1A235BD0A100F63BFD /* SpecVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995F9B15235BD0A100F63BFD /* SpecVersion.swift */; };
 		995F9B1B235BD0A100F63BFD /* ServiceDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995F9B16235BD0A100F63BFD /* ServiceDiscovery.swift */; };
+		99BFCE2D235BE742008A6B59 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 99BFCE2C235BE742008A6B59 /* XMLCoder */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +35,7 @@
 		995F9B14235BD0A100F63BFD /* LocationXMLData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationXMLData.swift; sourceTree = "<group>"; };
 		995F9B15235BD0A100F63BFD /* SpecVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecVersion.swift; sourceTree = "<group>"; };
 		995F9B16235BD0A100F63BFD /* ServiceDiscovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscovery.swift; sourceTree = "<group>"; };
+		99BFCE29235BE4C7008A6B59 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,8 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99BFCE2D235BE742008A6B59 /* XMLCoder in Frameworks */,
 				995F9B0A235BCFDD00F63BFD /* SSDPClient in Frameworks */,
-				995F9B0D235BCFF600F63BFD /* XMLParsing in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +56,7 @@
 			children = (
 				995F9AF4235BBA3500F63BFD /* SSDPExplorer */,
 				995F9AF3235BBA3500F63BFD /* Products */,
+				99BFCE28235BE4C6008A6B59 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +111,14 @@
 			path = "Location XML Data Structures";
 			sourceTree = "<group>";
 		};
+		99BFCE28235BE4C6008A6B59 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				99BFCE29235BE4C7008A6B59 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,7 +137,7 @@
 			name = SSDPExplorer;
 			packageProductDependencies = (
 				995F9B09235BCFDD00F63BFD /* SSDPClient */,
-				995F9B0C235BCFF600F63BFD /* XMLParsing */,
+				99BFCE2C235BE742008A6B59 /* XMLCoder */,
 			);
 			productName = SSDPExplorer;
 			productReference = 995F9AF2235BBA3500F63BFD /* SSDPExplorer.app */;
@@ -159,7 +169,7 @@
 			mainGroup = 995F9AE9235BBA3500F63BFD;
 			packageReferences = (
 				995F9B08235BCFDD00F63BFD /* XCRemoteSwiftPackageReference "SSDPClient" */,
-				995F9B0B235BCFF500F63BFD /* XCRemoteSwiftPackageReference "XMLParsing" */,
+				99BFCE2B235BE742008A6B59 /* XCRemoteSwiftPackageReference "XMLCoder" */,
 			);
 			productRefGroup = 995F9AF3235BBA3500F63BFD /* Products */;
 			projectDirPath = "";
@@ -403,12 +413,12 @@
 				minimumVersion = 0.2.1;
 			};
 		};
-		995F9B0B235BCFF500F63BFD /* XCRemoteSwiftPackageReference "XMLParsing" */ = {
+		99BFCE2B235BE742008A6B59 /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ShawnMoore/XMLParsing";
+			repositoryURL = "https://github.com/MaxDesiatov/XMLCoder/";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.3;
+				minimumVersion = 0.9.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -419,10 +429,10 @@
 			package = 995F9B08235BCFDD00F63BFD /* XCRemoteSwiftPackageReference "SSDPClient" */;
 			productName = SSDPClient;
 		};
-		995F9B0C235BCFF600F63BFD /* XMLParsing */ = {
+		99BFCE2C235BE742008A6B59 /* XMLCoder */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 995F9B0B235BCFF500F63BFD /* XCRemoteSwiftPackageReference "XMLParsing" */;
-			productName = XMLParsing;
+			package = 99BFCE2B235BE742008A6B59 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
