@@ -10,7 +10,18 @@ import Foundation
 import SSDPClient
 import XMLCoder
 
-class Host {
+class Host: ObservableObject {
+    
+    var friendlyName: String{
+        get{
+            // find the first group that has parsed xml data
+            var sg = serviceGroups.first(where: { (sg) -> Bool in
+                return sg.locationXMLData?.device?.modelDescription != nil;
+            });
+            return server ?? sg?.locationXMLData?.device?.modelDescription ?? host!;
+        }
+    }
+    
     var host : String? //XXX make none optional
     
     var server : String? // Some hosts will return a human readable description, which we'd prefer to display if available
@@ -30,6 +41,13 @@ class Host {
 
 /// Services are grouped into service groups based on simillar `uniqueServiceName` values and shared `location` values
 class ServiceGroup : NSObject, XMLParserDelegate{
+    
+    var friendlyName: String{
+        get{
+            // do any of my devices provide a friendly name?
+            return self.locationXMLData?.device?.modelDescription ?? self.locationXMLData?.device?.friendlyName ?? uniqueServiceNameBase;
+        }
+    }
     
     /// the leading UUID like string of the uniqueServiceName of the grouped `MyService` objects
     var uniqueServiceNameBase: String;
@@ -62,7 +80,7 @@ class ServiceGroup : NSObject, XMLParserDelegate{
     
     func processLocationXML() {
         let data = try! Data(contentsOf: locationURL!)
-        locationXMLData = try? XMLDecoder().decode(LocationXMLData.self, from: data)
+        locationXMLData = try! XMLDecoder().decode(LocationXMLData.self, from: data)
     }
 
 }

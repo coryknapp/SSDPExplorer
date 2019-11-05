@@ -15,30 +15,30 @@ struct ContentView: View {
     @State var focusedHost: Host?
     @State var focusedServiceGroup: ServiceGroup?
 
+    
     var body: some View {
         HStack(){
-            
-            // Hosts menu
-            List((NSApplication.shared.delegate as! AppDelegate).serviceDiscovery.hosts, id: \.host) { host in
-                HostRow(host: host, focusedHostBinding: self.$focusedHost)
+            // Hosts/services menu
+            Group {
+                List((NSApplication.shared.delegate as! AppDelegate).serviceDiscovery.hosts, id: \.host) { host in
+                    HostRow(host: host, focusedHostBinding: self.$focusedHost)
+                }.listStyle(SidebarListStyle())
             }
-
             Group {
                 // host detail v
                 if(( focusedHost ) != nil){
                     HostDetail(host: self.focusedHost!, focusedServiceGroupBinding: $focusedServiceGroup)
                 }
             }
-
             Group {
                 // service group detail v
                 if(( focusedServiceGroup ) != nil){
                     ServiceGroupDetail(serviceGroup: focusedServiceGroup!)
                 }
             }
-            
-        }.frame(minWidth: 400, idealWidth: 400, minHeight: 300, idealHeight: 300, alignment: .leading)
-            
+
+        }
+        //.frame(minWidth: 400, idealWidth: 400, minHeight: 300, idealHeight: 300, alignment: .leading)
     }
 }
 
@@ -49,7 +49,6 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
 struct HostRow: View {
     var host: Host
 
@@ -57,7 +56,7 @@ struct HostRow: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(host.server ?? host.host ?? "unknown").bold().frame(alignment: .leading)
+            Text(host.friendlyName)
             Text( "\(host.serviceGroups.count) services found" )
             Divider()
         }.onTapGesture {
@@ -67,12 +66,11 @@ struct HostRow: View {
 
 struct HostDetail: View {
     var host: Host
-    var testList = [String](arrayLiteral: "a", "b", "c", "d")
 
     @Binding var focusedServiceGroupBinding : ServiceGroup?
     
     var body: some View {
-        VStack() {
+        VStack(alignment: .leading) {
             Text(host.host ?? "unknown").font(.largeTitle)
             Text( "\(host.serviceGroups.count) service groups found" )
             
@@ -94,7 +92,7 @@ struct ServiceGroupRow: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("UniqueService: \(serviceGroup.uniqueServiceNameBase)")
+            Text(serviceGroup.friendlyName)
             Text("location: \(serviceGroup.locationURL?.absoluteString ?? "None provided")").onTapGesture {
                 if self.serviceGroup.locationURL != nil {
                     NSWorkspace.shared.open(self.serviceGroup.locationURL!)
@@ -111,28 +109,52 @@ struct ServiceGroupDetail: View {
     var serviceGroup: ServiceGroup
         
     var body: some View {
+        ScrollView(){
+            VStack(alignment: .leading) {
+                Text("UniqueService: \(serviceGroup.uniqueServiceNameBase)")
+                Text("\tservice count: \(serviceGroup.services.count)")
+                List(serviceGroup.services, id: \.uniqueServiceNameAddition) { service in
+                    Text( service.uniqueServiceNameAddition!.count == 0 ? "<empty>" : "\t\(service.uniqueServiceNameAddition!)" )
+                }.frame(height: 200, alignment: .leading)
+
+                Divider()
+
+                Text("location: \(serviceGroup.locationURL?.absoluteString ?? "None provided")").onTapGesture {
+                    if self.serviceGroup.locationURL != nil {
+                        NSWorkspace.shared.open(self.serviceGroup.locationURL!)
+                    }
+                }
+
+                Divider()
+                
+                Group(){
+                    if self.serviceGroup.locationXMLData != nil {
+                        if (self.serviceGroup.locationXMLData!.specVersion != nil) {
+                            Text( "Major version: \((self.serviceGroup.locationXMLData?.specVersion!.major) ?? "Unknown" )")
+                            Text( "Minor version: \((self.serviceGroup.locationXMLData?.specVersion!.minor) ?? "Unknown" )")
+                        }
+                        
+                        if( self.serviceGroup.locationXMLData?.device != nil){
+                            DeviceView(device: self.serviceGroup.locationXMLData!.device!)
+                        }
+                        
+                    } else {
+                        Text( "no location XML file found" )
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct DeviceView: View {
+    var device: Device
+        
+    var body: some View {
         VStack(alignment: .leading) {
-            Text("UniqueService: \(serviceGroup.uniqueServiceNameBase)")
-            Text("\tservice count: \(serviceGroup.services.count)")
-            List(serviceGroup.services, id: \.uniqueServiceNameAddition) { service in
-                Text( service.uniqueServiceNameAddition!.count == 0 ? "<empty>" : "\t\(service.uniqueServiceNameAddition!)" )
-            }.frame(height: 200, alignment: .leading)
-            
-            Divider()
-            
-            Text("location: \(serviceGroup.locationURL?.absoluteString ?? "None provided")").onTapGesture {
-                if self.serviceGroup.locationURL != nil {
-                    NSWorkspace.shared.open(self.serviceGroup.locationURL!)
-                }
-            }
-            Divider()
-            if serviceGroup.locationXMLData != nil {
-                VStack(){
-                    Text( "Major version: \((serviceGroup.locationXMLData?.specVersion!.major)!)")
-                }
-            } else {
-                Text( "no location XML file found" )
-            }
+            Text("Device Type: \(device.deviceType?.joined(separator: ", ") ?? "None provided")")
+            Text( "presentationURL: \((device.presentationURL) ?? "Unknown" )")
+
         }
     }
 }

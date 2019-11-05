@@ -94,8 +94,8 @@
 		995F9B10235BD0A100F63BFD /* Service Discovery */ = {
 			isa = PBXGroup;
 			children = (
-				995F9B11235BD0A100F63BFD /* Location XML Data Structures */,
 				995F9B16235BD0A100F63BFD /* ServiceDiscovery.swift */,
+				995F9B11235BD0A100F63BFD /* Location XML Data Structures */,
 			);
 			path = "Service Discovery";
 			sourceTree = "<group>";
